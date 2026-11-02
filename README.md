@@ -1,6 +1,5 @@
 # WasteWise – Smart Waste Management & Awareness System
 
-A BCA Semester 1 Environmental Studies (EVS) project that helps people segregate, measure and reduce their household waste.
 
 ## Features
 
