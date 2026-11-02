@@ -1,6 +1,578 @@
 /* =========================================================
-   WasteWise – Smart Waste Management & Awareness styles (css/pages/home.css)
+   WasteWise – Home Dashboard styles (css/pages/home.css)
    Only styles specific to index.html go here.
    Shared styles (buttons, cards, navbar) live in css/style.css.
-   Will be filled in Phase 2.
+
+   Sections:
+   1. Icons & helpers used on this page
+   2. Hero
+   3. Bin panel (hero visual)
+   4. Impact cards
+   5. Feature cards
+   6. How it works (steps)
+   7. About
+   8. Call-to-action
+   9. Responsive rules for this page
    ========================================================= */
+
+
+/* ---------- 1. ICONS & HELPERS ---------- */
+
+/* Inline SVG line icons: colour comes from the parent text colour */
+.icon {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.icon--sm {
+  width: 18px;
+  height: 18px;
+}
+
+.card__icon {
+  color: var(--green-700);
+}
+
+/* Gradient-coloured text used in the hero title */
+.text-gradient {
+  background: linear-gradient(90deg, var(--green-700), var(--green-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sections with an id: leave room for the sticky navbar when
+   a link like "#features" scrolls to them */
+main section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+/* Exactly three columns (impact cards) on large screens */
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Cards inside a ".stagger" group animate one after another.
+   home.js sets --delay on each card (0s, 0.1s, 0.2s ...). */
+.stagger .reveal {
+  transition-delay: var(--delay, 0s);
+}
+
+
+/* ---------- 2. HERO ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;   /* hide the parts of blobs outside the hero */
+  padding: var(--space-8) 0;
+  background: linear-gradient(180deg, var(--green-50) 0%, var(--white) 100%);
+}
+
+/* Soft blurred circles for a premium background feel */
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hero__blob--one {
+  width: 420px;
+  height: 420px;
+  background: var(--green-300);
+  top: -140px;
+  right: -100px;
+}
+
+.hero__blob--two {
+  width: 320px;
+  height: 320px;
+  background: var(--green-100);
+  bottom: -120px;
+  left: -80px;
+}
+
+.hero__grid {
+  position: relative;   /* sits above the blobs */
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.hero__title {
+  font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+}
+
+.hero__subtitle {
+  font-size: 1.12rem;
+  max-width: 540px;
+  margin-bottom: var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-6);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--green-800);
+}
+
+
+/* ---------- 3. BIN PANEL (hero visual) ---------- */
+.bin-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Gentle floating motion after the panel has faded in */
+.bin-panel.is-visible {
+  animation: float 6s ease-in-out 0.8s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.bin-panel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.bin-panel__header p {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+/* Small pulsing green dot */
+.bin-panel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 4px var(--green-100);
+}
+
+.bin-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+/* One bin tile. Its colour comes from --bin-color. */
+.bin {
+  --bin-color: var(--green-500);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-top: 4px solid var(--bin-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: var(--transition);
+}
+
+.bin:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.bin--wet       { --bin-color: var(--wet); }
+.bin--dry       { --bin-color: var(--dry); }
+.bin--hazardous { --bin-color: var(--hazardous); }
+.bin--ewaste    { --bin-color: var(--ewaste); }
+
+.bin__emoji {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.bin h4 {
+  font-size: 0.98rem;
+  margin-bottom: var(--space-1);
+}
+
+.bin p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--gray-500);
+}
+
+.bin-panel__note {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--green-50);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--green-800);
+  text-align: center;
+}
+
+
+/* ---------- 4. IMPACT CARDS ---------- */
+.impact-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Thin green bar across the top of each card */
+.impact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-700), var(--green-300));
+}
+
+.impact-card__list {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--gray-200);
+}
+
+.impact-card__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--gray-700);
+}
+
+/* Green tick before each list item */
+.impact-card__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--green-600);
+}
+
+
+/* ---------- 5. FEATURE CARDS ---------- */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  color: inherit;   /* card is a link: don't colour all text green */
+}
+
+.feature-card .card__text {
+  flex: 1;          /* pushes the "Open" link to the bottom */
+}
+
+.feature-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--green-700);
+}
+
+.feature-card__link .icon {
+  transition: transform var(--transition);
+}
+
+/* Arrow slides right when the card is hovered */
+.feature-card:hover .feature-card__link .icon {
+  transform: translateX(4px);
+}
+
+/* Icon box turns solid green on hover */
+.feature-card .card__icon {
+  transition: var(--transition);
+}
+
+.feature-card:hover .card__icon {
+  background: var(--green-700);
+  color: var(--white);
+}
+
+/* "About" card: dark green to stand out */
+.feature-card--accent {
+  background: linear-gradient(135deg, var(--green-800), var(--green-600));
+  border-color: transparent;
+}
+
+.feature-card--accent .card__title,
+.feature-card--accent .feature-card__link {
+  color: var(--white);
+}
+
+.feature-card--accent .card__text {
+  color: var(--green-100);
+}
+
+.feature-card--accent .card__icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+}
+
+.feature-card--accent:hover .card__icon {
+  background: var(--white);
+  color: var(--green-700);
+}
+
+
+/* ---------- 6. HOW IT WORKS (STEPS) ---------- */
+.steps {
+  position: relative;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+/* Dashed line connecting the four numbers (desktop only) */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 12.5%;
+  right: 12.5%;
+  border-top: 2px dashed var(--green-300);
+}
+
+.step {
+  position: relative;   /* sits above the dashed line */
+  text-align: center;
+  padding: 0 var(--space-2);
+}
+
+.step__number {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-700);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 0 0 8px var(--white), 0 0 0 9px var(--green-100);
+}
+
+.step h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-2);
+}
+
+.step p {
+  font-size: 0.93rem;
+}
+
+
+/* ---------- 7. ABOUT ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.about__text h2 {
+  margin-bottom: var(--space-4);
+}
+
+.about__text p + p {
+  margin-top: var(--space-3);
+}
+
+.about__list {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-3) var(--space-5);
+}
+
+.about__list li {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.about__list li:last-child {
+  border-bottom: none;
+}
+
+.about__list strong {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--green-700);
+}
+
+.about__list span {
+  color: var(--gray-700);
+}
+
+
+/* ---------- 8. CALL-TO-ACTION ---------- */
+.cta {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-7);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--green-900), var(--green-700));
+  box-shadow: var(--shadow-lg);
+}
+
+/* Decorative circle in the corner */
+.cta::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -80px;
+  top: -120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.cta__content {
+  max-width: 560px;
+}
+
+.cta h2 {
+  color: var(--white);
+  margin-bottom: var(--space-3);
+}
+
+.cta p {
+  color: var(--green-100);
+}
+
+.cta__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* Transparent button with a white border (for dark backgrounds) */
+.btn--ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+}
+
+
+/* ---------- 9. RESPONSIVE (home page only) ---------- */
+@media (max-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--space-7);
+  }
+
+  .steps::before {
+    display: none;   /* the connecting line only makes sense in one row */
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__grid,
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__actions,
+  .hero__badges {
+    justify-content: center;
+  }
+
+  .bin-panel {
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .grid--3 {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .cta {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta__actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-7) 0;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .cta__actions {
+    width: 100%;
+  }
+}
+
+/* Turn off the floating animation for users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .bin-panel.is-visible {
+    animation: none;
+  }
+}

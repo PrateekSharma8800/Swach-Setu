@@ -94,7 +94,18 @@ function setupRevealAnimation() {
     });
   }, { threshold: 0.15 });
 
-  elements.forEach(function (el) { observer.observe(el); });
+  elements.forEach(function (el) {
+    observer.observe(el);
+
+    // When the fade-in has finished, switch the element back to its
+    // normal (fast) transitions so hover effects feel snappy again.
+    el.addEventListener("transitionend", function onDone(event) {
+      if (event.propertyName !== "opacity") return;
+      el.classList.add("reveal-done");
+      el.style.removeProperty("--delay");
+      el.removeEventListener("transitionend", onDone);
+    });
+  });
 }
 
 

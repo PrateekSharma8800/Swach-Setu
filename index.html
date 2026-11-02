@@ -46,24 +46,306 @@
   </header>
 
   <main>
-    <!-- ===== PAGE HEADER ===== -->
-    <section class="page-header">
-      <div class="container">
-        <span class="eyebrow">Welcome to WasteWise</span>
-        <h1>Smart Waste Management & Awareness</h1>
-        <p>Learn to segregate, measure and reduce your waste — one smart habit at a time.</p>
+    <!-- =====================================================
+         1. HERO SECTION
+         Left: headline + buttons. Right: "four bins" panel.
+         ===================================================== -->
+    <section class="hero">
+      <!-- Decorative blurred circles in the background -->
+      <div class="hero__blob hero__blob--one" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--two" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <span class="eyebrow">Smart Waste Management &amp; Awareness</span>
+          <h1 class="hero__title">Make Every <span class="text-gradient">Waste Choice</span> Count</h1>
+          <p class="hero__subtitle">
+            WasteWise helps you understand the waste you create, sort it into the right bin,
+            measure your household's footprint and build greener everyday habits —
+            all in one simple, free tool that runs in your browser.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#features" class="btn btn--primary">
+              Explore WasteWise
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="segregation.html" class="btn btn--outline">Learn Waste Segregation</a>
+          </div>
+
+          <ul class="hero__badges">
+            <li>✓ No sign-up</li>
+            <li>✓ Beginner friendly</li>
+            <li>✓ Private — data stays on your device</li>
+          </ul>
+        </div>
+
+        <!-- Visual panel: the four types of waste bins -->
+        <div class="bin-panel reveal" aria-label="The four types of waste bins">
+          <div class="bin-panel__header">
+            <span class="bin-panel__dot"></span>
+            <p>Know your bins</p>
+          </div>
+
+          <div class="bin-panel__grid">
+            <div class="bin bin--wet">
+              <span class="bin__emoji" aria-hidden="true">🍌</span>
+              <h4>Wet Waste</h4>
+              <p>Food scraps, peels, tea leaves</p>
+            </div>
+            <div class="bin bin--dry">
+              <span class="bin__emoji" aria-hidden="true">📦</span>
+              <h4>Dry Waste</h4>
+              <p>Paper, plastic, glass, metal</p>
+            </div>
+            <div class="bin bin--hazardous">
+              <span class="bin__emoji" aria-hidden="true">🔋</span>
+              <h4>Hazardous</h4>
+              <p>Batteries, medicines, paint</p>
+            </div>
+            <div class="bin bin--ewaste">
+              <span class="bin__emoji" aria-hidden="true">📱</span>
+              <h4>E-Waste</h4>
+              <p>Phones, chargers, cables</p>
+            </div>
+          </div>
+
+          <p class="bin-panel__note">Segregation at source is the first step to zero waste.</p>
+        </div>
       </div>
     </section>
 
-    <!-- ===== PAGE CONTENT (built in Phase 2) ===== -->
-    <section class="section">
+
+    <!-- =====================================================
+         2. ENVIRONMENTAL IMPACT SECTION
+         Three educational cards (no invented statistics).
+         ===================================================== -->
+    <section class="section" id="impact">
       <div class="container">
-        <article class="card placeholder reveal">
-          <div class="card__icon" style="margin: 0 auto var(--space-4);">🏠</div>
-          <h3 class="card__title">Coming in Phase 2</h3>
-          <p class="card__text">This section is under construction.</p>
-          <a href="index.html" class="btn btn--outline mt-4">Back to Home</a>
-        </article>
+        <div class="section-title reveal">
+          <span class="eyebrow">Why it matters</span>
+          <h2>Small Actions, Big Environmental Impact</h2>
+          <p>How we handle waste at home decides whether it becomes a resource or a pollutant.</p>
+        </div>
+
+        <div class="grid grid--3 stagger">
+          <article class="card card--hover impact-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+            </div>
+            <h3 class="card__title">Waste Segregation</h3>
+            <p class="card__text">
+              Separating waste at home into wet, dry and hazardous keeps recyclable materials
+              clean and usable. Mixed waste is hard to recover and usually ends up in landfills.
+            </p>
+            <ul class="impact-card__list">
+              <li>Keeps recyclables free from food contamination</li>
+              <li>Lets wet waste be turned into compost</li>
+              <li>Required at source under India's Solid Waste Management Rules, 2016</li>
+            </ul>
+          </article>
+
+          <article class="card card--hover impact-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"/><path d="m13.378 9.633 4.096 1.098 1.097-4.096"/></svg>
+            </div>
+            <h3 class="card__title">Recycling</h3>
+            <p class="card__text">
+              Recycling turns used paper, plastic, glass and metal into new products. It
+              reduces the need to mine, cut trees or drill for new raw materials.
+            </p>
+            <ul class="impact-card__list">
+              <li>Conserves natural resources like trees, water and minerals</li>
+              <li>Uses less energy than making products from scratch</li>
+              <li>Creates livelihoods in the recycling sector</li>
+            </ul>
+          </article>
+
+          <article class="card card--hover impact-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3 class="card__title">Responsible Disposal</h3>
+            <p class="card__text">
+              Items like batteries, medicines and electronics contain chemicals and heavy metals.
+              Thrown in the general bin, they can leak into soil and groundwater.
+            </p>
+            <ul class="impact-card__list">
+              <li>Prevents toxic substances from polluting soil and water</li>
+              <li>Protects sanitation workers from injury and exposure</li>
+              <li>Recovers valuable metals from old electronics</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         3. EXPLORE FEATURES SECTION
+         Seven clickable cards — the whole card is a link.
+         ===================================================== -->
+    <section class="section section--light" id="features">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">Explore WasteWise</span>
+          <h2>Everything You Need to Manage Waste Smartly</h2>
+          <p>Learn, measure, test your knowledge and get disposal guidance, in seven simple tools.</p>
+        </div>
+
+        <div class="grid feature-grid stagger">
+          <a href="segregation.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            </div>
+            <h3 class="card__title">Waste Segregation Guide</h3>
+            <p class="card__text">Find the right bin for everyday items: wet, dry, hazardous or e-waste.</p>
+            <span class="feature-card__link">Open guide <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="calculator.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>
+            </div>
+            <h3 class="card__title">Waste Calculator</h3>
+            <p class="card__text">Estimate how much waste your household generates every week.</p>
+            <span class="feature-card__link">Calculate <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="analytics.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+            </div>
+            <h3 class="card__title">Waste Analytics</h3>
+            <p class="card__text">See your saved results as simple charts and track progress over time.</p>
+            <span class="feature-card__link">View analytics <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="quiz.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+            </div>
+            <h3 class="card__title">Awareness Quiz</h3>
+            <p class="card__text">Test your waste-management knowledge and learn from each answer.</p>
+            <span class="feature-card__link">Take the quiz <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="assistant.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg>
+            </div>
+            <h3 class="card__title">Smart Disposal Assistant</h3>
+            <p class="card__text">Type any item and get instant, rule-based disposal guidance.</p>
+            <span class="feature-card__link">Ask assistant <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="case-study.html" class="card card--hover feature-card reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg>
+            </div>
+            <h3 class="card__title">Indore Case Study</h3>
+            <p class="card__text">Discover how Indore became India's cleanest city through smart waste management.</p>
+            <span class="feature-card__link">Read case study <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <a href="#about" class="card card--hover feature-card feature-card--accent reveal">
+            <div class="card__icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            </div>
+            <h3 class="card__title">About WasteWise</h3>
+            <p class="card__text">Learn about the goal behind this project and how it was built.</p>
+            <span class="feature-card__link">About the project <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         4. HOW IT WORKS SECTION
+         Four numbered steps connected by a line (desktop).
+         ===================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Four Steps to Smarter Waste Habits</h2>
+          <p>Follow this simple path from learning to lasting change.</p>
+        </div>
+
+        <ol class="steps stagger">
+          <li class="step reveal">
+            <span class="step__number">1</span>
+            <h3>Understand Your Waste</h3>
+            <p>Learn the different types of waste and why each one needs different handling.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__number">2</span>
+            <h3>Segregate Correctly</h3>
+            <p>Use the guide and the assistant to put every item in the right bin.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__number">3</span>
+            <h3>Calculate &amp; Analyse</h3>
+            <p>Measure your weekly waste and study the charts to spot where you can cut down.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__number">4</span>
+            <h3>Adopt Sustainable Habits</h3>
+            <p>Reduce, reuse, compost and recycle — and inspire people around you to do the same.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT SECTION (target of the "About WasteWise" card)
+         ===================================================== -->
+    <section class="section section--light" id="about">
+      <div class="container about">
+        <div class="about__text reveal">
+          <span class="eyebrow">About WasteWise</span>
+          <h2>A Student Project for a Cleaner Tomorrow</h2>
+          <p>
+            WasteWise was created as a BCA Semester 1 Environmental Studies (EVS) project.
+            Its goal is to make waste management easy to understand and practise, through
+            clear guides, simple tools and interactive learning.
+          </p>
+          <p>
+            It is built only with HTML, CSS and JavaScript. There is no login, no server and no
+            tracking. Anything you calculate is saved only in your own browser.
+          </p>
+        </div>
+
+        <ul class="about__list reveal">
+          <li><strong>Mission</strong><span>Spread awareness about segregation at source.</span></li>
+          <li><strong>Approach</strong><span>Learn → Segregate → Measure → Improve.</span></li>
+          <li><strong>Inspiration</strong><span>Indore's citizen-driven waste management model.</span></li>
+          <li><strong>Built with</strong><span>HTML5, CSS3 and vanilla JavaScript.</span></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         5. FINAL CALL-TO-ACTION
+         ===================================================== -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="cta__content">
+            <h2>Your Bin, Your Responsibility</h2>
+            <p>
+              Clean cities begin at home. Start segregating today, so that less waste
+              reaches landfills and more is recovered as a resource.
+            </p>
+          </div>
+          <div class="cta__actions">
+            <a href="segregation.html" class="btn btn--light">Start Segregating</a>
+            <a href="quiz.html" class="btn btn--ghost">Take the Quiz</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

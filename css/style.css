@@ -477,6 +477,12 @@ p {
   transform: translateY(0);
 }
 
+/* After the fade-in ends, main.js adds "reveal-done" so hover
+   effects use the normal quick transition again */
+.reveal.reveal-done {
+  transition: var(--transition);
+}
+
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
