@@ -359,7 +359,7 @@
 
 /* Categories with 0 kg are faded */
 .bar-row.is-zero {
-  opacity: 0.5;
+  opacity: 0.65;
 }
 
 

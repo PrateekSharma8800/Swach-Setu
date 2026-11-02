@@ -27,21 +27,32 @@ function setupMobileMenu() {
   // Stop if this page has no navbar (safety check)
   if (!toggleButton || !linkList) return;
 
+  // Opens or closes the menu and keeps screen-reader labels correct
+  function setMenu(isOpen) {
+    linkList.classList.toggle("is-open", isOpen);
+    toggleButton.classList.toggle("is-open", isOpen);
+    toggleButton.setAttribute("aria-expanded", isOpen);
+    toggleButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  }
+
   // Open / close the menu when the hamburger is clicked
   toggleButton.addEventListener("click", function () {
-    const isOpen = linkList.classList.toggle("is-open");
-    toggleButton.classList.toggle("is-open", isOpen);
-    // Tell screen readers whether the menu is open
-    toggleButton.setAttribute("aria-expanded", isOpen);
+    setMenu(!linkList.classList.contains("is-open"));
   });
 
   // Close the menu after a link is clicked (useful on phones)
   linkList.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", function () {
-      linkList.classList.remove("is-open");
-      toggleButton.classList.remove("is-open");
-      toggleButton.setAttribute("aria-expanded", "false");
+      setMenu(false);
     });
+  });
+
+  // Close the menu with the Escape key and return focus to the button
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && linkList.classList.contains("is-open")) {
+      setMenu(false);
+      toggleButton.focus();
+    }
   });
 }
 

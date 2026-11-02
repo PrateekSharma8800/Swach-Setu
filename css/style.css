@@ -32,7 +32,7 @@
   --white:    #ffffff;
   --gray-900: #1a2b23;    /* main text colour */
   --gray-700: #3f5249;
-  --gray-500: #6b7d74;    /* secondary text */
+  --gray-500: #5b6d64;    /* secondary text (5.5:1 contrast on white) */
   --gray-200: #e3ebe6;    /* borders */
   --gray-100: #f5f8f6;    /* light backgrounds */
 
@@ -121,6 +121,28 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+/* "Skip to main content" link: hidden until a keyboard user presses Tab */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 1000;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--green-900);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* <main> receives focus from the skip link; no outline needed there */
+main:focus {
+  outline: none;
 }
 
 /* Visible outline for keyboard users (accessibility) */
@@ -321,7 +343,7 @@ p {
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  /* no "gap" here: it would split "Waste" and "Wise" apart */
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
@@ -384,7 +406,7 @@ p {
 
 /* ---------- 8. PAGE HEADER (inner pages) ---------- */
 .page-header {
-  background: linear-gradient(135deg, var(--green-800), var(--green-600));
+  background: linear-gradient(135deg, var(--green-800), var(--green-700));
   color: var(--white);
   padding: var(--space-8) 0 var(--space-7);
   text-align: center;
@@ -434,7 +456,8 @@ p {
   font-size: 0.95rem;
 }
 
-.footer h4 {
+.footer__title {
+  font-size: 1.05rem;
   color: var(--white);
   margin-bottom: var(--space-3);
 }
@@ -668,7 +691,7 @@ main section[id] {
   border: none;
   border-radius: var(--radius-full);
   background: color-mix(in srgb, var(--cat-color) 14%, var(--white));
-  color: color-mix(in srgb, var(--cat-color) 75%, black);
+  color: color-mix(in srgb, var(--cat-color) 60%, black);   /* dark enough for 5:1 contrast */
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;

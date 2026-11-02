@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#146c43">
   <meta name="description" content="WasteWise – Indore Case Study. Understanding how citizen participation, waste segregation and scientific processing can help build cleaner cities.">
   <title>Indore Case Study | WasteWise</title>
 
@@ -20,6 +21,8 @@
   <link rel="stylesheet" href="css/pages/case-study.css">
 </head>
 <body>
+  <!-- Lets keyboard users jump past the navigation -->
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION BAR (same on every page) ===== -->
   <header class="navbar">
@@ -29,11 +32,11 @@
       </a>
 
       <!-- Hamburger button: only visible on small screens -->
-      <button class="navbar__toggle" aria-label="Open menu" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
 
-      <ul class="navbar__links">
+      <ul class="navbar__links" id="nav-links">
           <li><a href="index.html" class="navbar__link">Home</a></li>
           <li><a href="segregation.html" class="navbar__link">Segregation</a></li>
           <li><a href="calculator.html" class="navbar__link">Calculator</a></li>
@@ -45,7 +48,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <!-- ===== PAGE HEADER ===== -->
     <section class="page-header">
       <div class="container">
@@ -598,7 +601,7 @@
             segregate, measure and reduce their waste.</p>
         </div>
         <div>
-          <h4>Tools</h4>
+          <h2 class="footer__title">Tools</h2>
           <ul class="footer__links">
             <li><a href="segregation.html">Waste Segregation Guide</a></li>
             <li><a href="calculator.html">Waste Calculator</a></li>
@@ -606,7 +609,7 @@
           </ul>
         </div>
         <div>
-          <h4>Learn</h4>
+          <h2 class="footer__title">Learn</h2>
           <ul class="footer__links">
             <li><a href="quiz.html">Awareness Quiz</a></li>
             <li><a href="assistant.html">Smart Disposal Assistant</a></li>

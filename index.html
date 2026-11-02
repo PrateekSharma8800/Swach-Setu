@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#146c43">
   <meta name="description" content="WasteWise – Smart Waste Management & Awareness. Learn to segregate, measure and reduce your waste — one smart habit at a time.">
-  <title>Smart Waste Management & Awareness | WasteWise</title>
+  <title>Smart Waste Management &amp; Awareness | WasteWise</title>
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -20,6 +21,8 @@
   <link rel="stylesheet" href="css/pages/home.css">
 </head>
 <body>
+  <!-- Lets keyboard users jump past the navigation -->
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION BAR (same on every page) ===== -->
   <header class="navbar">
@@ -29,11 +32,11 @@
       </a>
 
       <!-- Hamburger button: only visible on small screens -->
-      <button class="navbar__toggle" aria-label="Open menu" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
 
-      <ul class="navbar__links">
+      <ul class="navbar__links" id="nav-links">
           <li><a href="index.html" class="navbar__link">Home</a></li>
           <li><a href="segregation.html" class="navbar__link">Segregation</a></li>
           <li><a href="calculator.html" class="navbar__link">Calculator</a></li>
@@ -45,7 +48,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <!-- =====================================================
          1. HERO SECTION
          Left: headline + buttons. Right: "four bins" panel.
@@ -81,31 +84,31 @@
         </div>
 
         <!-- Visual panel: the four types of waste bins -->
-        <div class="bin-panel reveal" aria-label="The four types of waste bins">
+        <div class="bin-panel reveal" role="group" aria-label="The four types of waste bins">
           <div class="bin-panel__header">
             <span class="bin-panel__dot"></span>
-            <p>Know your bins</p>
+            <h2 class="bin-panel__title">Know your bins</h2>
           </div>
 
           <div class="bin-panel__grid">
             <div class="bin bin--wet">
               <span class="bin__emoji" aria-hidden="true">🍌</span>
-              <h4>Wet Waste</h4>
+              <h3 class="bin__title">Wet Waste</h3>
               <p>Food scraps, peels, tea leaves</p>
             </div>
             <div class="bin bin--dry">
               <span class="bin__emoji" aria-hidden="true">📦</span>
-              <h4>Dry Waste</h4>
+              <h3 class="bin__title">Dry Waste</h3>
               <p>Paper, plastic, glass, metal</p>
             </div>
             <div class="bin bin--hazardous">
               <span class="bin__emoji" aria-hidden="true">🔋</span>
-              <h4>Hazardous</h4>
+              <h3 class="bin__title">Hazardous</h3>
               <p>Batteries, medicines, paint</p>
             </div>
             <div class="bin bin--ewaste">
               <span class="bin__emoji" aria-hidden="true">📱</span>
-              <h4>E-Waste</h4>
+              <h3 class="bin__title">E-Waste</h3>
               <p>Phones, chargers, cables</p>
             </div>
           </div>
@@ -359,7 +362,7 @@
             segregate, measure and reduce their waste.</p>
         </div>
         <div>
-          <h4>Tools</h4>
+          <h2 class="footer__title">Tools</h2>
           <ul class="footer__links">
             <li><a href="segregation.html">Waste Segregation Guide</a></li>
             <li><a href="calculator.html">Waste Calculator</a></li>
@@ -367,7 +370,7 @@
           </ul>
         </div>
         <div>
-          <h4>Learn</h4>
+          <h2 class="footer__title">Learn</h2>
           <ul class="footer__links">
             <li><a href="quiz.html">Awareness Quiz</a></li>
             <li><a href="assistant.html">Smart Disposal Assistant</a></li>
