@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Waste Analytics script (js/analytics.js)
+   SwachSetu – Waste Analytics script (js/analytics.js)
    ---------------------------------------------------------
    Needs (loaded before this file in analytics.html):
      • js/data/waste-items.js → WASTE_CATEGORIES (names, icons, colours)

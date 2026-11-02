@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Shared Script (main.js)
+   SwachSetu – Shared Script (main.js)
    ---------------------------------------------------------
    Linked on EVERY page. It handles:
    1. Mobile menu (hamburger) open / close
@@ -60,7 +60,7 @@ function setupMobileMenu() {
 /* ---------- 2. Active link ----------
    Compares each link's file name with the current page's file name. */
 function highlightActiveLink() {
-  // e.g. ".../WasteWise/quiz.html" → "quiz.html"
+  // e.g. ".../SwachSetu/quiz.html" → "quiz.html"
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage === "") currentPage = "index.html"; // site root
 

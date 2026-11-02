@@ -1,10 +1,14 @@
 <div align="center">
 
-# 🌿 WasteWise
+<img src="assets/logo.svg" alt="SwachSetu logo" width="96">
+
+# SwachSetu
 
 ### Smart Waste Management & Awareness System
 
 **Learn to segregate, measure and reduce your household waste — one smart habit at a time.**
+
+### 🌐 [View the live website →](https://prateeksharma8800.github.io/Swach-Setu/)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -12,7 +16,7 @@
 ![No frameworks](https://img.shields.io/badge/frameworks-none-146c43?style=flat)
 ![Responsive](https://img.shields.io/badge/responsive-yes-146c43?style=flat)
 
-<img src="assets/screenshots/homepage.jpg" alt="WasteWise homepage showing the headline 'Make Every Waste Choice Count' and a panel of the four waste bins" width="900">
+<img src="assets/screenshots/homepage.jpg" alt="SwachSetu homepage showing the headline 'Make Every Waste Choice Count' and a panel of the four waste bins" width="900">
 
 </div>
 
@@ -20,7 +24,7 @@
 
 ## 📖 About the Project
 
-**WasteWise** is a responsive website that helps Indian households manage their waste responsibly.
+**SwachSetu** — *swachh* (clean) + *setu* (bridge) — is a bridge to cleaner cities. It is a responsive website that helps Indian households manage their waste responsibly.
 It explains which bin each item belongs in, estimates how much waste a household produces, turns
 those numbers into simple charts, tests waste-management knowledge through a quiz, and shows how
 Indore became one of India's cleanest cities.
@@ -49,7 +53,7 @@ stays on your own device.
 
 | | Page | Description |
 |:-:|---|---|
-| 🏠 | **Home Dashboard** | Introduction to WasteWise, why segregation matters, quick links to every tool and a four-step guide to better habits. |
+| 🏠 | **Home Dashboard** | Introduction to SwachSetu, why segregation matters, quick links to every tool and a four-step guide to better habits. |
 | ♻️ | **Waste Segregation Guide** | Six waste categories and 48 everyday items, with live search, category filters and disposal advice. |
 | 🧮 | **Waste Calculator** | Enter your daily waste in six categories to get daily, weekly and monthly totals and a category-wise breakdown. |
 | 📊 | **Waste Analytics** | A donut chart, a bar chart and rule-based insights generated from your latest calculation. |
@@ -78,7 +82,7 @@ No frameworks, backend, database, paid APIs or AI models are used.
 
 **Option 1 — VS Code (recommended)**
 
-1. Open the `WasteWise` folder in VS Code.
+1. Open the project folder in VS Code.
 2. Install the **Live Server** extension.
 3. Right-click `index.html` and choose **Open with Live Server**.
 
@@ -91,7 +95,7 @@ Double-click `index.html` to open it in Chrome, Edge, Firefox or Safari.
 ## 📁 Project Structure
 
 ```
-WasteWise/
+Swach-Setu/
 ├── index.html              Home Dashboard
 ├── segregation.html        Waste Segregation Guide
 ├── calculator.html         Waste Calculator
@@ -114,7 +118,8 @@ WasteWise/
 │   └── <page>.js           Logic for each page
 │
 └── assets/
-    ├── favicon.svg
+    ├── logo.svg            SwachSetu logo (bridge + leaf)
+    ├── favicon.svg         Browser-tab icon
     ├── images/             Case-study photo
     └── screenshots/        README screenshot
 ```

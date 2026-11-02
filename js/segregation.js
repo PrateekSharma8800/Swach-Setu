@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Segregation Guide script (js/segregation.js)
+   SwachSetu – Segregation Guide script (js/segregation.js)
    ---------------------------------------------------------
    Uses WASTE_CATEGORIES and WASTE_ITEMS from
    js/data/waste-items.js (loaded before this file).

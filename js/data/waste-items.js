@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Waste Data (js/data/waste-items.js)
+   SwachSetu – Waste Data (js/data/waste-items.js)
    ---------------------------------------------------------
    The single source of waste information for the website.
    Used by:

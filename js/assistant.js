@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Smart Disposal Assistant (js/assistant.js)
+   SwachSetu – Smart Disposal Assistant (js/assistant.js)
    ---------------------------------------------------------
    A RULE-BASED helper (not AI). It compares the words the user
    types with a fixed list of items in js/data/waste-items.js

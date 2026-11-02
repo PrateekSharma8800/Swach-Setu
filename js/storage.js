@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Storage Helpers (storage.js)
+   SwachSetu – Storage Helpers (storage.js)
    ---------------------------------------------------------
    Small wrapper around the browser's localStorage so other
    files can save and load data with one line.
@@ -7,7 +7,7 @@
    localStorage only stores text, so we convert objects to
    text with JSON.stringify and back with JSON.parse.
 
-   Keys used by WasteWise (all start with "wasteWise"):
+   Keys used by SwachSetu (all start with "wasteWise"):
      wasteWiseCalculatorData  → calculator.js (Phase 4),
                                 read by analytics.js (Phase 5)
 

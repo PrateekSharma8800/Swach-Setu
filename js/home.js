@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Home Dashboard script (js/home.js)
+   SwachSetu – Home Dashboard script (js/home.js)
    Logic specific to index.html.
 
    Staggered animation: inside every ".stagger" group, each

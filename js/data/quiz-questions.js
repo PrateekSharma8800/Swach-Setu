@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Quiz questions (js/data/quiz-questions.js)
+   SwachSetu – Quiz questions (js/data/quiz-questions.js)
    ---------------------------------------------------------
    Used by js/quiz.js. Kept separate so questions can be
    added or edited without touching the quiz logic.

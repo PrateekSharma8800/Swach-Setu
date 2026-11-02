@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Indore Case Study script (js/case-study.js)
+   SwachSetu – Indore Case Study script (js/case-study.js)
    ---------------------------------------------------------
    The page is mostly static content. This file only adds one
    helpful feature:

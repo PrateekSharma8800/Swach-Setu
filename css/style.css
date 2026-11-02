@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Shared Design System (style.css)
+   SwachSetu – Shared Design System (style.css)
    ---------------------------------------------------------
    This file is linked on EVERY page. It contains:
    1. Design tokens (CSS variables: colours, fonts, spacing)
@@ -340,17 +340,32 @@ p {
   justify-content: space-between;
 }
 
+/* Logo = bridge-and-leaf badge (assets/logo.svg) + "SwachSetu" wordmark */
 .navbar__logo {
   display: flex;
   align-items: center;
-  /* no "gap" here: it would split "Waste" and "Wise" apart */
+  gap: var(--space-2);
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--green-900);
 }
 
-.navbar__logo span {
+.navbar__logo-mark {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition);
+}
+
+.navbar__logo:hover .navbar__logo-mark {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* "Setu" in a lighter green */
+.navbar__logo-text span {
   color: var(--green-600);
 }
 
@@ -447,7 +462,12 @@ p {
   margin-bottom: var(--space-3);
 }
 
-.footer .navbar__logo span {
+/* Soft light ring so the green badge stands out on the dark footer */
+.footer .navbar__logo-mark {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.footer .navbar__logo-text span {
   color: var(--green-300);
 }
 

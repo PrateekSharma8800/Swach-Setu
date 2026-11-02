@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Awareness Quiz script (js/quiz.js)
+   SwachSetu – Awareness Quiz script (js/quiz.js)
    ---------------------------------------------------------
    Needs (loaded before this file in quiz.html):
      • js/data/quiz-questions.js → QUIZ_QUESTIONS

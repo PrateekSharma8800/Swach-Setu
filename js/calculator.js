@@ -1,5 +1,5 @@
 /* =========================================================
-   WasteWise – Waste Calculator script (js/calculator.js)
+   SwachSetu – Waste Calculator script (js/calculator.js)
    ---------------------------------------------------------
    Needs (loaded before this file in calculator.html):
      • js/data/waste-items.js → WASTE_CATEGORIES (names, icons, colours)
