@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WasteWise – Waste Analytics. See your waste trends visualised with simple charts.">
+  <title>Waste Analytics | WasteWise</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Fonts (free): Poppins for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets: shared first, then responsive, then this page's own styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/pages/analytics.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR (same on every page) ===== -->
+  <header class="navbar">
+    <nav class="container navbar__inner" aria-label="Main navigation">
+      <a href="index.html" class="navbar__logo" aria-label="WasteWise home">
+        🌿 Waste<span>Wise</span>
+      </a>
+
+      <!-- Hamburger button: only visible on small screens -->
+      <button class="navbar__toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="navbar__links">
+          <li><a href="index.html" class="navbar__link">Home</a></li>
+          <li><a href="segregation.html" class="navbar__link">Segregation</a></li>
+          <li><a href="calculator.html" class="navbar__link">Calculator</a></li>
+          <li><a href="analytics.html" class="navbar__link">Analytics</a></li>
+          <li><a href="quiz.html" class="navbar__link">Quiz</a></li>
+          <li><a href="assistant.html" class="navbar__link">Assistant</a></li>
+          <li><a href="case-study.html" class="navbar__link">Indore Case Study</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Track your progress</span>
+        <h1>Waste Analytics</h1>
+        <p>See your waste trends visualised with simple charts.</p>
+      </div>
+    </section>
+
+    <!-- ===== PAGE CONTENT (built in Phase 5) ===== -->
+    <section class="section">
+      <div class="container">
+        <article class="card placeholder reveal">
+          <div class="card__icon" style="margin: 0 auto var(--space-4);">📊</div>
+          <h3 class="card__title">Coming in Phase 5</h3>
+          <p class="card__text">This section is under construction.</p>
+          <a href="index.html" class="btn btn--outline mt-4">Back to Home</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo">🌿 Waste<span>Wise</span></a>
+          <p>A Smart Waste Management &amp; Awareness System built as a BCA Semester 1
+            Environmental Studies (EVS) project.</p>
+        </div>
+        <div>
+          <h4>Tools</h4>
+          <ul class="footer__links">
+            <li><a href="segregation.html">Waste Segregation Guide</a></li>
+            <li><a href="calculator.html">Waste Calculator</a></li>
+            <li><a href="analytics.html">Waste Analytics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul class="footer__links">
+            <li><a href="quiz.html">Awareness Quiz</a></li>
+            <li><a href="assistant.html">Smart Disposal Assistant</a></li>
+            <li><a href="case-study.html">Indore Case Study</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> WasteWise &middot; Reduce &middot; Reuse &middot; Recycle</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts at the end so the HTML loads first -->
+  <script src="js/data/emission-factors.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

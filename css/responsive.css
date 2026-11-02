@@ -1,0 +1,109 @@
+/* =========================================================
+   WasteWise – Responsive Styles (responsive.css)
+   ---------------------------------------------------------
+   Linked AFTER style.css so these rules can override it.
+   Breakpoints:
+     ≤ 1024px  → tablets / small laptops (hamburger menu)
+     ≤ 768px   → tablets in portrait
+     ≤ 480px   → mobile phones
+   ========================================================= */
+
+
+/* ---------- Tablets & small laptops ---------- */
+@media (max-width: 1024px) {
+
+  /* Show the hamburger button */
+  .navbar__toggle {
+    display: flex;
+  }
+
+  /* Turn the link list into a drop-down panel (hidden by default) */
+  .navbar__links {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    background-color: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-md);
+
+    /* hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+  }
+
+  /* main.js adds "is-open" when the hamburger is clicked */
+  .navbar__links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar__link {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Animate hamburger into an "X" when open */
+  .navbar__toggle.is-open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .navbar__toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar__toggle.is-open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+}
+
+
+/* ---------- Tablets (portrait) ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-7) 0;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Brand column takes the full first row */
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* ---------- Mobile phones ---------- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-5);
+  }
+
+  .page-header {
+    padding: var(--space-7) 0 var(--space-6);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
