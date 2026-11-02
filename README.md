@@ -8,7 +8,7 @@
 
 **Learn to segregate, measure and reduce your household waste — one smart habit at a time.**
 
-### 🌐 [View the live website →](https://prateeksharma8800.github.io/Swach-Setu/)
+### 🌐 [View the live website →](https://swachsetu.vercel.app/)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
