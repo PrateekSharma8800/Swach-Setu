@@ -18,22 +18,7 @@
 
 /* ---------- 1. ICONS & HELPERS ---------- */
 
-/* Inline SVG line icons: colour comes from the parent text colour */
-.icon {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
-}
-
-.icon--sm {
-  width: 18px;
-  height: 18px;
-}
+/* (.icon and .icon--sm now live in css/style.css) */
 
 .card__icon {
   color: var(--green-700);
@@ -45,12 +30,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-/* Sections with an id: leave room for the sticky navbar when
-   a link like "#features" scrolls to them */
-main section[id] {
-  scroll-margin-top: var(--nav-height);
 }
 
 /* Exactly three columns (impact cards) on large screens */

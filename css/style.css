@@ -41,6 +41,8 @@
   --dry:       #2f80ed;   /* blue bin   */
   --hazardous: #e5484d;   /* red bin    */
   --ewaste:    #f2994a;   /* orange     */
+  --plastic:   #d4a20b;   /* amber      */
+  --sanitary:  #9b59b6;   /* purple     */
 
   /* Typography */
   --font-heading: "Poppins", "Segoe UI", Arial, sans-serif;
@@ -461,6 +463,31 @@ p {
 
 
 /* ---------- 10. UTILITIES & ANIMATION ---------- */
+
+/* Inline SVG line icons: colour comes from the parent's text colour.
+   Usage: <svg class="icon" viewBox="0 0 24 24">...</svg> */
+.icon {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.icon--sm {
+  width: 18px;
+  height: 18px;
+}
+
+/* Sections with an id: leave room for the sticky navbar when
+   a link like "#features" scrolls to them */
+main section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
 .text-center { text-align: center; }
 .mt-4 { margin-top: var(--space-4); }
 .mt-6 { margin-top: var(--space-6); }

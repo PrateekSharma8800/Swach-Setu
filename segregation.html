@@ -49,21 +49,157 @@
     <!-- ===== PAGE HEADER ===== -->
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Know your bins</span>
-        <h1>Waste Segregation Guide</h1>
-        <p>Find out which bin every item belongs in — wet, dry, hazardous or e-waste.</p>
+        <span class="eyebrow">Waste Segregation Guide</span>
+        <h1>Know Your Waste, Sort It Right</h1>
+        <p>Learn how to identify, separate and dispose of everyday household waste responsibly.</p>
+        <div class="header-links">
+          <a href="#categories" class="btn btn--light">See Categories</a>
+          <a href="#explorer" class="btn btn--ghost">Search an Item</a>
+        </div>
       </div>
     </section>
 
-    <!-- ===== PAGE CONTENT (built in Phase 3) ===== -->
-    <section class="section">
+
+    <!-- =====================================================
+         1. WASTE CATEGORIES
+         The six cards are created by segregation.js using
+         WASTE_CATEGORIES from js/data/waste-items.js
+         ===================================================== -->
+    <section class="section" id="categories">
       <div class="container">
-        <article class="card placeholder reveal">
-          <div class="card__icon" style="margin: 0 auto var(--space-4);">♻️</div>
-          <h3 class="card__title">Coming in Phase 3</h3>
-          <p class="card__text">This section is under construction.</p>
-          <a href="index.html" class="btn btn--outline mt-4">Back to Home</a>
-        </article>
+        <div class="section-title reveal">
+          <span class="eyebrow">6 Categories</span>
+          <h2>The Six Types of Household Waste</h2>
+          <p>Every item you throw away belongs to one of these groups. Sorting them correctly is the first step to recycling and safe disposal.</p>
+        </div>
+
+        <div class="category-grid" id="category-grid">
+          <!-- Category cards are added here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         2. ITEM EXPLORER: search + filters + item cards
+         ===================================================== -->
+    <section class="section section--light" id="explorer">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">Item Explorer</span>
+          <h2>Where Does It Go?</h2>
+          <p>Search for an everyday item or pick a category to see how to dispose of it.</p>
+        </div>
+
+        <!-- Toolbar: stays visible at the top while scrolling the items -->
+        <div class="toolbar">
+          <div class="search">
+            <svg class="icon icon--sm search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <label for="search-input" class="visually-hidden">Search waste items</label>
+            <input type="search" id="search-input" class="search__input"
+                   placeholder="Search items, e.g. battery, chai, milk pouch…" autocomplete="off">
+            <button type="button" class="search__clear" id="search-clear" aria-label="Clear search" hidden>✕</button>
+          </div>
+
+          <!-- data-filter must match a category id in waste-items.js ("all" shows everything) -->
+          <div class="filters" role="group" aria-label="Filter by category">
+            <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-btn" data-filter="wet" aria-pressed="false">Wet</button>
+            <button type="button" class="filter-btn" data-filter="dry" aria-pressed="false">Dry</button>
+            <button type="button" class="filter-btn" data-filter="plastic" aria-pressed="false">Plastic</button>
+            <button type="button" class="filter-btn" data-filter="ewaste" aria-pressed="false">E-Waste</button>
+            <button type="button" class="filter-btn" data-filter="hazardous" aria-pressed="false">Hazardous</button>
+            <button type="button" class="filter-btn" data-filter="sanitary" aria-pressed="false">Sanitary</button>
+          </div>
+        </div>
+
+        <!-- "Showing 8 of 48 items" – updated by JavaScript.
+             aria-live makes screen readers announce the change. -->
+        <p class="results-info" id="results-info" aria-live="polite"></p>
+
+        <div class="item-grid" id="item-grid">
+          <!-- Item cards are added here by JavaScript -->
+        </div>
+
+        <!-- Shown only when nothing matches the search -->
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-state__icon" aria-hidden="true">🔍</span>
+          <h3>No items found</h3>
+          <p>Try a different word, check the spelling, or choose "All" categories.</p>
+          <button type="button" class="btn btn--outline mt-4" id="reset-btn">Reset search</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         3. QUICK TIPS
+         ===================================================== -->
+    <section class="section" id="tips">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">Quick Tips</span>
+          <h2>5 Habits for Easy Segregation at Home</h2>
+        </div>
+
+        <ol class="tips">
+          <li class="tip card reveal">
+            <span class="tip__number">01</span>
+            <div>
+              <h3>Keep separate bins in the kitchen</h3>
+              <p>Place at least two bins — one for wet and one for dry waste — where waste is actually created, so sorting takes no extra effort.</p>
+            </div>
+          </li>
+          <li class="tip card reveal">
+            <span class="tip__number">02</span>
+            <div>
+              <h3>Rinse and dry before you throw</h3>
+              <p>A quick rinse of milk pouches, cans and containers keeps recyclables clean and stops bad smells and insects.</p>
+            </div>
+          </li>
+          <li class="tip card reveal">
+            <span class="tip__number">03</span>
+            <div>
+              <h3>Keep a box for e-waste and hazardous items</h3>
+              <p>Collect batteries, old chargers, bulbs and expired medicines in a separate box and drop them at collection points together.</p>
+            </div>
+          </li>
+          <li class="tip card reveal">
+            <span class="tip__number">04</span>
+            <div>
+              <h3>Wrap sanitary waste and sharp objects</h3>
+              <p>Wrap pads, diapers, blades and broken glass in paper and mark them, so waste workers aren't hurt or exposed to infection.</p>
+            </div>
+          </li>
+          <li class="tip card reveal">
+            <span class="tip__number">05</span>
+            <div>
+              <h3>Reduce and reuse first</h3>
+              <p>Carry a cloth bag and a water bottle, refuse single-use plastic and repair before replacing. The best waste is the waste you never create.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         4. IMPORTANT NOTE (disclaimer)
+         ===================================================== -->
+    <section class="section section--light note-section">
+      <div class="container">
+        <aside class="note reveal" role="note">
+          <span class="note__icon" aria-hidden="true">ℹ️</span>
+          <div>
+            <h3>Important note</h3>
+            <p>
+              Waste collection methods, bin colour-coding and category rules can vary between
+              cities and even between localities. This guide gives general advice for Indian
+              households. Always follow the guidelines issued by your local municipal body
+              (Nagar Nigam / Municipal Corporation) or housing society.
+            </p>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
