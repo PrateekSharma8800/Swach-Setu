@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WasteWise – Waste Analytics. See your waste trends visualised with simple charts.">
+  <meta name="description" content="WasteWise – Waste Analytics. Understand your household waste generation through simple visual insights.">
   <title>Waste Analytics | WasteWise</title>
 
   <!-- Favicon -->
@@ -49,21 +49,130 @@
     <!-- ===== PAGE HEADER ===== -->
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Track your progress</span>
-        <h1>Waste Analytics</h1>
-        <p>See your waste trends visualised with simple charts.</p>
+        <span class="eyebrow">Waste Analytics</span>
+        <h1>Your Waste Analytics</h1>
+        <p>Understand your household waste generation through simple visual insights.</p>
       </div>
     </section>
 
-    <!-- ===== PAGE CONTENT (built in Phase 5) ===== -->
-    <section class="section">
+
+    <section class="section section--light">
       <div class="container">
-        <article class="card placeholder reveal">
-          <div class="card__icon" style="margin: 0 auto var(--space-4);">📊</div>
-          <h3 class="card__title">Coming in Phase 5</h3>
-          <p class="card__text">This section is under construction.</p>
-          <a href="index.html" class="btn btn--outline mt-4">Back to Home</a>
-        </article>
+
+        <!-- =====================================================
+             EMPTY STATE – shown when there is no saved calculation
+             ===================================================== -->
+        <div class="card empty-state" id="empty-state" hidden>
+          <span class="empty-state__icon" aria-hidden="true">📊</span>
+          <h2>No waste data yet</h2>
+          <p id="empty-message">
+            Your analytics are created from your own numbers. First visit the Waste Calculator,
+            enter how many kilograms of each type of waste your household produces per day,
+            and click <strong>Calculate My Waste</strong>. Then come back here.
+          </p>
+          <a href="calculator.html" class="btn btn--primary mt-6">Go to Waste Calculator</a>
+        </div>
+
+
+        <!-- =====================================================
+             DASHBOARD – shown when saved data exists
+             ===================================================== -->
+        <div id="dashboard" hidden>
+
+          <!-- Top bar: source of the data + actions -->
+          <div class="dash-bar">
+            <p class="dash-bar__info">
+              <span class="live-dot" aria-hidden="true"></span>
+              Based on your calculation saved on <strong id="saved-date"></strong>
+            </p>
+            <div class="dash-bar__actions">
+              <button type="button" class="btn btn--outline btn--small" id="reload-btn">
+                <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+                Reload analytics
+              </button>
+              <a href="calculator.html" class="btn btn--primary btn--small">
+                <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Calculator
+              </a>
+            </div>
+          </div>
+
+
+          <!-- ===== 1. SUMMARY CARDS ===== -->
+          <div class="summary-grid">
+            <article class="card summary-card summary-card--main">
+              <span class="summary-card__label">Daily waste</span>
+              <p class="summary-card__value"><span id="daily-total"></span> <small>kg</small></p>
+              <span class="summary-card__sub">from your latest input</span>
+            </article>
+            <article class="card summary-card">
+              <span class="summary-card__label">Weekly estimate</span>
+              <p class="summary-card__value"><span id="weekly-total"></span> <small>kg</small></p>
+              <span class="summary-card__sub">daily × 7</span>
+            </article>
+            <article class="card summary-card">
+              <span class="summary-card__label">Monthly estimate</span>
+              <p class="summary-card__value"><span id="monthly-total"></span> <small>kg</small></p>
+              <span class="summary-card__sub">daily × 30</span>
+            </article>
+            <article class="card summary-card summary-card--largest" id="largest-card">
+              <span class="summary-card__label">Largest category</span>
+              <p class="summary-card__largest" id="largest-name"></p>
+              <span class="summary-card__sub" id="largest-sub"></span>
+            </article>
+          </div>
+
+          <p class="estimate-note">
+            ℹ️ Weekly and monthly values are <strong>estimates</strong> calculated from your latest
+            daily input. Real waste amounts change from day to day.
+          </p>
+
+
+          <!-- ===== 2. CHARTS ===== -->
+          <div class="chart-grid">
+
+            <!-- A. Donut chart (SVG) -->
+            <article class="card chart-card">
+              <div class="chart-card__head">
+                <h2>Share of each category</h2>
+                <p>Percentage of your daily waste</p>
+              </div>
+              <div class="donut-wrap">
+                <div class="donut" id="donut-chart"></div>
+                <ul class="legend" id="donut-legend"></ul>
+              </div>
+            </article>
+
+            <!-- B. Horizontal bar chart (SVG) -->
+            <article class="card chart-card">
+              <div class="chart-card__head">
+                <h2>Quantity by category</h2>
+                <p>Kilograms per day, compared side by side</p>
+              </div>
+              <div class="bar-chart" id="bar-chart"></div>
+            </article>
+          </div>
+
+
+          <!-- ===== 3. CATEGORY-WISE ANALYTICS ===== -->
+          <section class="category-section" aria-labelledby="category-heading">
+            <div class="block-head">
+              <h2 id="category-heading">Category-wise breakdown</h2>
+              <p>All six categories from your latest calculation</p>
+            </div>
+            <div class="category-stats" id="category-stats"></div>
+          </section>
+
+
+          <!-- ===== 4. RULE-BASED INSIGHTS ===== -->
+          <section class="card insights" aria-labelledby="insights-heading">
+            <div class="insights__head">
+              <h2 id="insights-heading">Insights &amp; suggestions</h2>
+              <span class="rule-tag">Rule-based · generated from fixed rules, not AI</span>
+            </div>
+            <ul class="insights__list" id="insights-list"></ul>
+          </section>
+        </div>
       </div>
     </section>
   </main>
@@ -101,7 +210,7 @@
   </footer>
 
   <!-- Scripts at the end so the HTML loads first -->
-  <script src="js/data/emission-factors.js"></script>
+  <script src="js/data/waste-items.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/main.js"></script>
   <script src="js/analytics.js"></script>

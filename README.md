@@ -29,7 +29,7 @@ Open `index.html` in any modern browser, or use the **Live Server** extension in
 ├── css/pages/        Page-specific styles
 ├── js/main.js        Shared navbar and animation logic
 ├── js/storage.js     localStorage helpers
-├── js/data/          Data files (waste items, quiz questions, calculator constants)
+├── js/data/          Data files (waste categories and items, quiz questions)
 ├── js/*.js           Page-specific logic
 └── assets/           Images, icons and favicon
 ```

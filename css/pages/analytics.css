@@ -1,6 +1,582 @@
 /* =========================================================
    WasteWise – Waste Analytics styles (css/pages/analytics.css)
    Only styles specific to analytics.html go here.
-   Shared styles (buttons, cards, navbar) live in css/style.css.
-   Will be filled in Phase 5.
+   Shared styles (buttons, cards, navbar, .icon) live in css/style.css.
+
+   Sections:
+   1. Empty state
+   2. Top bar (date + buttons)
+   3. Summary cards
+   4. Chart cards (donut + legend, bar chart)
+   5. Category cards
+   6. Insights
+   7. Responsive rules
    ========================================================= */
+
+
+/* ---------- 1. EMPTY STATE ---------- */
+.empty-state {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-7) var(--space-6);
+  border: 2px dashed var(--green-300);
+}
+
+.empty-state__icon {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+.empty-state h2 {
+  margin-bottom: var(--space-3);
+}
+
+
+/* ---------- 2. TOP BAR ---------- */
+.dash-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.dash-bar__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.93rem;
+}
+
+.dash-bar__info strong {
+  color: var(--green-900);
+}
+
+/* Green dot = "your data" */
+.live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 4px var(--green-100);
+  flex-shrink: 0;
+}
+
+.dash-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Smaller version of the shared button */
+.btn--small {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.9rem;
+}
+
+/* Brief green flash after "Reload analytics" is clicked */
+#reload-btn.is-done {
+  background: var(--green-100);
+}
+
+#reload-btn.is-done .icon {
+  transform: rotate(360deg);
+  transition: transform 0.6s ease;
+}
+
+
+/* ---------- 3. SUMMARY CARDS ---------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+}
+
+.summary-card__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.summary-card__value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--green-900);
+  word-break: break-word;
+}
+
+.summary-card__value small {
+  font-size: 0.95rem;
+  color: var(--gray-500);
+}
+
+.summary-card__sub {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+/* Daily total: dark green */
+.summary-card--main {
+  background: linear-gradient(135deg, var(--green-800), var(--green-600));
+  border-color: transparent;
+}
+
+.summary-card--main .summary-card__label,
+.summary-card--main .summary-card__sub,
+.summary-card--main .summary-card__value small {
+  color: var(--green-100);
+}
+
+.summary-card--main .summary-card__value {
+  color: var(--white);
+}
+
+/* Largest category: coloured left border in that category's colour */
+.summary-card--largest {
+  border-left: 5px solid var(--cat-color, var(--green-500));
+}
+
+.summary-card__largest {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--green-900);
+}
+
+.estimate-note {
+  margin: var(--space-4) 0 var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+}
+
+
+/* ---------- 4. CHART CARDS ---------- */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.chart-card {
+  min-width: 0;   /* lets the card shrink inside the grid */
+}
+
+.chart-card__head {
+  margin-bottom: var(--space-5);
+}
+
+.chart-card__head h2,
+.block-head h2,
+.insights h2 {
+  font-size: 1.25rem;
+}
+
+.chart-card__head p,
+.block-head p {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+}
+
+/* --- Donut --- */
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.donut {
+  width: 220px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.donut svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.donut__track {
+  stroke: var(--gray-100);
+}
+
+.donut__segment {
+  transition: opacity var(--transition), stroke-width var(--transition);
+}
+
+/* When a legend item is hovered, fade the other slices */
+.donut.has-highlight .donut__segment {
+  opacity: 0.25;
+}
+
+.donut.has-highlight .donut__segment.is-active {
+  opacity: 1;
+  stroke-width: 6.5;
+}
+
+/* Text in the middle of the donut (SVG units, not px) */
+.donut__total {
+  font-family: var(--font-heading);
+  font-size: 6px;
+  font-weight: 700;
+  fill: var(--green-900);
+  text-anchor: middle;
+}
+
+.donut__unit {
+  font-size: 2.6px;
+  fill: var(--gray-500);
+  text-anchor: middle;
+}
+
+/* --- Legend --- */
+.legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  cursor: default;
+  transition: background var(--transition);
+}
+
+.legend__item:hover {
+  background: var(--green-50);
+}
+
+.legend__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: var(--cat-color);
+  flex-shrink: 0;
+}
+
+.legend__name {
+  flex: 1;
+  color: var(--gray-900);
+}
+
+.legend__value {
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+.legend__item.is-zero {
+  opacity: 0.45;
+}
+
+/* --- Bar chart (SVG text and shapes) --- */
+.bar-chart {
+  width: 100%;
+  overflow: hidden;
+}
+
+.bar-chart svg {
+  display: block;
+}
+
+.bar-chart__grid {
+  stroke: var(--gray-200);
+  stroke-dasharray: 3 3;
+}
+
+.bar-chart__tick {
+  font-size: 11px;
+  fill: var(--gray-500);
+  text-anchor: middle;
+}
+
+.bar-chart__label {
+  font-size: 13px;
+  font-weight: 500;
+  fill: var(--gray-900);
+  text-anchor: end;               /* right-aligned next to the bar */
+  dominant-baseline: middle;      /* vertically centred */
+}
+
+.bar-chart__value {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--green-900);
+  dominant-baseline: middle;
+}
+
+.bar-chart__track {
+  fill: var(--gray-100);
+}
+
+.bar-chart__bar {
+  transition: opacity var(--transition);
+}
+
+.bar-chart__bar:hover {
+  opacity: 0.8;
+}
+
+.bar-chart__row.is-zero .bar-chart__label,
+.bar-chart__row.is-zero .bar-chart__value {
+  opacity: 0.45;
+}
+
+.bar-chart__axis-label {
+  margin-top: var(--space-1);
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+
+/* ---------- 5. CATEGORY CARDS ---------- */
+.block-head {
+  margin-bottom: var(--space-5);
+}
+
+.category-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.cat-stat {
+  padding: var(--space-5);
+  border-top: 4px solid var(--cat-color);
+}
+
+.cat-stat:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.cat-stat__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.cat-stat__head h3 {
+  flex: 1;
+  font-size: 0.98rem;
+  line-height: 1.3;
+}
+
+.cat-stat__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--cat-color) 14%, var(--white));
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.cat-stat__rank {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.cat-stat__numbers {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+}
+
+.cat-stat__numbers strong {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--green-900);
+}
+
+.cat-stat__percent {
+  font-weight: 600;
+  color: var(--green-800);
+}
+
+/* Progress meter */
+.meter {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  overflow: hidden;
+}
+
+.meter__fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--cat-color);
+  animation: grow 0.9s ease;
+}
+
+@keyframes grow {
+  from { width: 0; }
+}
+
+.cat-stat__note {
+  margin-top: var(--space-2);
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+.cat-stat.is-zero {
+  opacity: 0.6;
+}
+
+
+/* ---------- 6. INSIGHTS ---------- */
+.insights__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* Small label making clear these are rules, not AI */
+.rule-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+
+.insights__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.insight {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--green-50);
+  border-left: 4px solid var(--green-500);
+}
+
+.insight p {
+  font-size: 0.92rem;
+}
+
+.insight a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.insight__icon {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+/* Colours by type */
+.insight--info {
+  background: #eef5fe;
+  border-left-color: var(--dry);
+}
+
+.insight--warning {
+  background: #fff4ec;
+  border-left-color: var(--ewaste);
+}
+
+
+/* ---------- 7. RESPONSIVE ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .meter__fill { animation: none; }
+}
+
+@media (max-width: 1024px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .insights__list {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .donut-wrap {
+    flex-direction: column;
+  }
+
+  .donut {
+    width: 200px;
+  }
+
+  .legend {
+    width: 100%;
+  }
+
+  .category-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .empty-state {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .dash-bar__actions {
+    width: 100%;
+  }
+}
