@@ -1,6 +1,430 @@
 /* =========================================================
    WasteWise – Waste Calculator styles (css/pages/calculator.css)
    Only styles specific to calculator.html go here.
-   Shared styles (buttons, cards, navbar) live in css/style.css.
-   Will be filled in Phase 4.
+   Shared styles (buttons, cards, navbar, .icon) live in css/style.css.
+
+   Sections:
+   1. Layout (form + side card)
+   2. Form, input fields and errors
+   3. "How we calculate" side card
+   4. Results: header and summary cards
+   5. Breakdown progress bars
+   6. Insights
+   7. Responsive rules
    ========================================================= */
+
+
+/* ---------- 1. LAYOUT ---------- */
+.calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+
+/* ---------- 2. FORM ---------- */
+.calc-form__header {
+  margin-bottom: var(--space-5);
+}
+
+.calc-form__header h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.calc-form__header p {
+  font-size: 0.95rem;
+}
+
+/* Red message box at the top of the form */
+.form-alert {
+  margin-bottom: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #fdecec;
+  border: 1px solid #f5c2c4;
+  border-left: 4px solid var(--hazardous);
+  color: #9b1c1f;
+  font-size: 0.93rem;
+  font-weight: 500;
+}
+
+/* Two columns of inputs */
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4) var(--space-5);
+}
+
+.field__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+/* Small coloured square behind each emoji */
+.field__icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--cat-color) 14%, var(--white));
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.field__control {
+  position: relative;
+}
+
+.field__input {
+  width: 100%;
+  padding: var(--space-3) 4.5rem var(--space-3) var(--space-4);
+  border: 2px solid var(--gray-200);
+  border-left: 4px solid var(--cat-color);
+  border-radius: var(--radius-sm);
+  background: var(--gray-100);
+  color: var(--gray-900);
+  font-size: 1rem;
+  transition: var(--transition);
+  /* Remove the up/down arrows in Firefox */
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Remove the up/down arrows in Chrome, Safari and Edge */
+.field__input::-webkit-outer-spin-button,
+.field__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.field__input:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--green-500);
+  border-left-color: var(--cat-color);
+  box-shadow: 0 0 0 4px var(--green-100);
+}
+
+/* "kg/day" label inside the input, on the right */
+.field__unit {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  pointer-events: none;
+}
+
+/* Invalid field (class added by calculator.js) */
+.field__input.is-invalid {
+  border-color: var(--hazardous);
+  background: #fff7f7;
+}
+
+.field__input.is-invalid:focus {
+  box-shadow: 0 0 0 4px #fbdcdd;
+}
+
+.field__error {
+  min-height: 1.2em;     /* keeps the layout from jumping */
+  margin-top: var(--space-1);
+  font-size: 0.82rem;
+  color: #b42318;
+}
+
+.calc-form__hint {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--green-50);
+  font-size: 0.88rem;
+}
+
+.calc-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+
+/* ---------- 3. "HOW WE CALCULATE" CARD ---------- */
+.how-card {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-4));
+  background: linear-gradient(160deg, var(--green-50), var(--white));
+}
+
+.how-card h3 {
+  margin-bottom: var(--space-4);
+}
+
+.formula-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.formula-list span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+.formula-list code {
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  color: var(--gray-900);
+}
+
+.how-card__note {
+  margin-top: var(--space-4);
+  font-size: 0.88rem;
+}
+
+.how-card__note a {
+  font-weight: 600;
+}
+
+
+/* ---------- 4. RESULTS: HEADER + SUMMARY CARDS ---------- */
+.results {
+  animation: fade-up 0.5s ease;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.results__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.saved-box {
+  text-align: right;
+}
+
+.saved-info {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+}
+
+/* A button that looks like a small text link */
+.link-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #b42318;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.stat-card__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+.stat-card__value {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--green-900);
+  word-break: break-word;
+}
+
+.stat-card__value small {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+.stat-card__sub {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+/* The daily total card is dark green to stand out */
+.stat-card--main {
+  background: linear-gradient(135deg, var(--green-800), var(--green-600));
+  border-color: transparent;
+}
+
+.stat-card--main .stat-card__label,
+.stat-card--main .stat-card__sub,
+.stat-card--main .stat-card__value small {
+  color: var(--green-100);
+}
+
+.stat-card--main .stat-card__value {
+  color: var(--white);
+}
+
+.results__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+
+/* ---------- 5. BREAKDOWN PROGRESS BARS ---------- */
+.breakdown__sub {
+  font-size: 0.88rem;
+  margin: var(--space-1) 0 var(--space-5);
+}
+
+.bar-row {
+  margin-bottom: var(--space-4);
+}
+
+.bar-row:last-child {
+  margin-bottom: 0;
+}
+
+.bar-row__top {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  font-size: 0.92rem;
+}
+
+.bar-row__name {
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+.bar-row__value {
+  white-space: nowrap;
+  color: var(--gray-500);
+}
+
+.bar-row__value strong {
+  color: var(--green-900);
+}
+
+/* Grey track */
+.bar {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  overflow: hidden;
+}
+
+/* Coloured fill – width is set by calculator.js */
+.bar__fill {
+  width: 0;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--cat-color);
+  transition: width 0.8s ease;
+}
+
+/* Categories with 0 kg are faded */
+.bar-row.is-zero {
+  opacity: 0.5;
+}
+
+
+/* ---------- 6. INSIGHTS ---------- */
+.insights h3 {
+  margin-bottom: var(--space-4);
+}
+
+.insights__list li {
+  position: relative;
+  padding: var(--space-3) 0 var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.93rem;
+  color: var(--gray-700);
+}
+
+.insights__list li:last-child {
+  border-bottom: none;
+}
+
+.insights__list li::before {
+  content: "🌱";
+  position: absolute;
+  left: 0;
+  top: var(--space-3);
+}
+
+
+/* ---------- 7. RESPONSIVE ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .results { animation: none; }
+  .bar__fill { transition: none; }
+}
+
+@media (max-width: 1024px) {
+  .calc-layout,
+  .results__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .input-grid,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .saved-box {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Name above the numbers on narrow screens */
+  .bar-row__top {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
