@@ -1,95 +1,191 @@
-# WasteWise – Smart Waste Management & Awareness System
+<div align="center">
 
-A BCA Semester 1 Environmental Studies (EVS) project that helps people segregate, measure and reduce their household waste.
+# 🌿 WasteWise
 
-## Features
+### Smart Waste Management & Awareness System
 
-| Page | File | What it does |
-|---|---|---|
-| Home Dashboard | `index.html` | Introduction, why segregation matters, links to every tool, how it works |
-| Waste Segregation Guide | `segregation.html` | 6 waste categories and 48 everyday items, with search and category filters |
-| Waste Calculator | `calculator.html` | Enter daily waste (kg) in 6 categories → daily, weekly and monthly totals with a category breakdown |
-| Waste Analytics | `analytics.html` | Donut and bar charts (SVG) and rule-based insights from your latest calculation |
-| Awareness Quiz | `quiz.html` | 15 multiple-choice questions with scoring, result levels and explanations |
-| Smart Disposal Assistant | `assistant.html` | Rule-based (not AI) search that ranks matching items and gives disposal advice, warnings and tips |
-| Indore Case Study | `case-study.html` | How Indore manages its waste, with sourced figures, challenges and lessons |
+**Learn to segregate, measure and reduce your household waste — one smart habit at a time.**
 
-## Technology
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![No frameworks](https://img.shields.io/badge/frameworks-none-146c43?style=flat)
+![Responsive](https://img.shields.io/badge/responsive-yes-146c43?style=flat)
 
-- HTML5, CSS3 and vanilla JavaScript only.
-- No frameworks, libraries, backend, database, paid APIs or AI models.
-- Charts are drawn with plain SVG.
-- Fonts: Poppins and Inter from Google Fonts. The site falls back to system fonts when offline.
+<img src="assets/screenshots/homepage.jpg" alt="WasteWise homepage showing the headline 'Make Every Waste Choice Count' and a panel of the four waste bins" width="900">
 
-## How to run
+</div>
+
+---
+
+## 📖 About the Project
+
+**WasteWise** is a responsive website that helps Indian households manage their waste responsibly.
+It explains which bin each item belongs in, estimates how much waste a household produces, turns
+those numbers into simple charts, tests waste-management knowledge through a quiz, and shows how
+Indore became one of India's cleanest cities.
+
+Everything runs directly in the browser: no sign-up, no server and no tracking. Any data you enter
+stays on your own device.
+
+---
+
+## 📑 Table of Contents
+
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [How It Works](#-how-it-works)
+- [Data & Privacy](#-data--privacy)
+- [Accessibility & Quality](#-accessibility--quality)
+- [Case Study Sources](#-case-study-sources)
+- [Credits](#-credits)
+- [Limitations](#-limitations)
+
+---
+
+## ✨ Features
+
+| | Page | Description |
+|:-:|---|---|
+| 🏠 | **Home Dashboard** | Introduction to WasteWise, why segregation matters, quick links to every tool and a four-step guide to better habits. |
+| ♻️ | **Waste Segregation Guide** | Six waste categories and 48 everyday items, with live search, category filters and disposal advice. |
+| 🧮 | **Waste Calculator** | Enter your daily waste in six categories to get daily, weekly and monthly totals and a category-wise breakdown. |
+| 📊 | **Waste Analytics** | A donut chart, a bar chart and rule-based insights generated from your latest calculation. |
+| 🧠 | **Awareness Quiz** | 15 multiple-choice questions with a progress bar, scoring, result levels and explanations for every answer. |
+| 💬 | **Smart Disposal Assistant** | A rule-based (not AI) search that finds the closest matching item and shows how to dispose of it, with warnings and tips. |
+| 🏙️ | **Indore Case Study** | How Indore manages its waste: a timeline, a six-step workflow, sourced evidence, challenges and lessons for other cities. |
+
+---
+
+## 🛠️ Tech Stack
+
+| Area | Used |
+|---|---|
+| Structure | HTML5 |
+| Styling | CSS3 (custom properties, Flexbox, Grid, media queries) |
+| Logic | Vanilla JavaScript (no libraries) |
+| Charts | Hand-drawn SVG |
+| Storage | Browser `localStorage` |
+| Fonts | Poppins & Inter (Google Fonts) |
+
+No frameworks, backend, database, paid APIs or AI models are used.
+
+---
+
+## 🚀 Getting Started
+
+**Option 1 — VS Code (recommended)**
 
 1. Open the `WasteWise` folder in VS Code.
 2. Install the **Live Server** extension.
-3. Right-click `index.html` → **Open with Live Server**.
+3. Right-click `index.html` and choose **Open with Live Server**.
 
-You can also double-click `index.html` to open it directly in a browser.
+**Option 2 — Directly in a browser**
 
-## Folder structure
+Double-click `index.html` to open it in Chrome, Edge, Firefox or Safari.
+
+---
+
+## 📁 Project Structure
 
 ```
 WasteWise/
-├── index.html, segregation.html, calculator.html, analytics.html,
-│   quiz.html, assistant.html, case-study.html     One page per feature
+├── index.html              Home Dashboard
+├── segregation.html        Waste Segregation Guide
+├── calculator.html         Waste Calculator
+├── analytics.html          Waste Analytics
+├── quiz.html               Awareness Quiz
+├── assistant.html          Smart Disposal Assistant
+├── case-study.html         Indore Case Study
+│
 ├── css/
-│   ├── style.css          Shared design system: colours, buttons, cards, navbar,
-│   │                      footer, search box, filters, badges, notes
-│   ├── responsive.css     Shared tablet and mobile layouts
-│   └── pages/             One stylesheet per page
+│   ├── style.css           Shared design system (colours, buttons, cards, navbar, footer)
+│   ├── responsive.css      Shared tablet and mobile layouts
+│   └── pages/              One stylesheet per page
+│
 ├── js/
-│   ├── main.js            Shared: mobile menu, active link, scroll animations
-│   ├── storage.js         localStorage helpers (save / load / remove)
+│   ├── main.js             Mobile menu, active link and scroll animations
+│   ├── storage.js          Save / load helpers for localStorage
 │   ├── data/
-│   │   ├── waste-items.js     6 categories + 48 items (used by 4 pages)
-│   │   └── quiz-questions.js  15 quiz questions
-│   └── <page>.js          Logic for each page
+│   │   ├── waste-items.js      6 categories and 48 household items
+│   │   └── quiz-questions.js   15 quiz questions
+│   └── <page>.js           Logic for each page
+│
 └── assets/
     ├── favicon.svg
-    └── images/            Case-study photo (see Credits)
+    ├── images/             Case-study photo
+    └── screenshots/        README screenshot
 ```
 
-## Data saved in the browser
+---
 
-Nothing leaves the user's device. Two `localStorage` keys are used:
+## ⚙️ How It Works
 
-| Key | Written by | Read by | Contents |
-|---|---|---|---|
-| `wasteWiseCalculatorData` | Calculator | Calculator, Analytics | `{ version, latest, history[] }` (up to 30 calculations) |
-| `wasteWiseQuizResult` | Quiz | Quiz | Latest score, percentage, level, answers and best score |
+- **One shared dataset:** `waste-items.js` powers the Segregation Guide, the Disposal Assistant, the Calculator and Analytics, so advice is consistent across pages.
+- **Calculator → Analytics:** the Calculator saves each valid result; Analytics reads the latest result and draws the charts.
+- **Rule-based insights and search:** fixed `if` rules and keyword matching. No AI is involved.
+- **Formulas:**
+  - Daily total = sum of the six categories
+  - Weekly = daily × 7
+  - Monthly = daily × 30
+  - Category % = category ÷ daily total × 100
 
-## Accessibility and quality checks
+---
 
-- **HTML:** every page passes `html-validate` with no errors.
-- **Colour contrast:** text colours meet WCAG AA (at least 4.5:1).
-- **Keyboard:**
-  - A "Skip to main content" link.
-  - Visible focus outlines.
-  - The Escape key closes the mobile menu.
-  - The quiz has keyboard shortcuts.
-- **Screen readers:** labelled form fields, `aria-live` result counts, text descriptions for both charts, and alt text on the image.
-- **Reduced motion:** animations are reduced when the device's "reduce motion" setting is on.
-- **Responsive:** tested from desktop down to phone widths with no horizontal scrolling.
+## 🔒 Data & Privacy
 
-## Case study sources
+Nothing is sent to any server. Two keys are stored in the browser:
 
-1. Indore Municipal Corporation — https://imcindore.mp.gov.in/waste-management
-2. Indore Smart City — Solid Waste Management — https://www.smartcityindore.org/solid-waste/
-3. NITI Aayog & CSE, *Waste-Wise Cities* (2021) — https://www.niti.gov.in/node/362
-4. CAG, Performance Audit on Waste Management in Urban Local Bodies, Madhya Pradesh (Report No. 2 of 2024) — https://www.cag.gov.in/en/audit-report/details/121262
-5. Global Methane Initiative / U.S. EPA, Indore case study — https://gmidev.org/web/how-indias-cleanest-city-reduces-methane-emissions-municipal-solid-waste
+| Key | Saved by | Contains |
+|---|---|---|
+| `wasteWiseCalculatorData` | Calculator | Latest calculation and up to 30 previous ones |
+| `wasteWiseQuizResult` | Quiz | Latest score, result level and best score |
 
-## Credits
+Clearing your browser data removes them.
 
-- Photo: "Door-to-door Garbage Collection Vans in Indore - Under Swachh Bharat Abhiyan" by TheodoreIndiana, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Door-to-door_Garbage_Collection_Vans_in_Indore_-_Under_Swachh_Bharat_Abhiyan.jpg), licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
-- Fonts: [Poppins](https://fonts.google.com/specimen/Poppins) and [Inter](https://fonts.google.com/specimen/Inter), SIL Open Font License.
+---
 
-## Limitations
+## ♿ Accessibility & Quality
 
-- The Assistant and Segregation Guide know only the 48 items in the dataset, and have no spelling correction.
-- Calculator results are estimates (weekly = daily × 7, monthly = daily × 30).
-- Saved data stays in one browser on one device and is lost if browser data is cleared.
-- Waste rules and bin colours differ between cities, so users should follow their local municipal guidelines.
+- ✅ **HTML:** valid on every page (checked with `html-validate`).
+- ✅ **Colour contrast:** text meets WCAG AA (at least 4.5:1).
+- ✅ **Keyboard:** "Skip to main content" link, visible focus outlines, Escape closes the mobile menu, and the quiz has keyboard shortcuts.
+- ✅ **Screen readers:** labelled form fields, live result counts, and text descriptions for charts and images.
+- ✅ **Reduced motion:** animations are reduced when the device's "reduce motion" setting is on.
+- ✅ **Responsive:** layouts for desktop, tablet and mobile, with no sideways scrolling.
+
+---
+
+## 📚 Case Study Sources
+
+1. [Indore Municipal Corporation — Waste Management](https://imcindore.mp.gov.in/waste-management)
+2. [Indore Smart City — Solid Waste Management](https://www.smartcityindore.org/solid-waste/)
+3. [NITI Aayog & CSE — *Waste-Wise Cities* (2021)](https://www.niti.gov.in/node/362)
+4. [CAG — Performance Audit on Waste Management in Urban Local Bodies, Madhya Pradesh (Report No. 2 of 2024)](https://www.cag.gov.in/en/audit-report/details/121262)
+5. [Global Methane Initiative / U.S. EPA — Indore case study](https://gmidev.org/web/how-indias-cleanest-city-reduces-methane-emissions-municipal-solid-waste)
+
+---
+
+## 🙏 Credits
+
+- **Photo:** "Door-to-door Garbage Collection Vans in Indore - Under Swachh Bharat Abhiyan" by TheodoreIndiana, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Door-to-door_Garbage_Collection_Vans_in_Indore_-_Under_Swachh_Bharat_Abhiyan.jpg), licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+- **Fonts:** [Poppins](https://fonts.google.com/specimen/Poppins) and [Inter](https://fonts.google.com/specimen/Inter), SIL Open Font License.
+
+---
+
+## ⚠️ Limitations
+
+- The Guide and the Assistant cover the 48 items in the dataset and do not correct spelling mistakes.
+- Calculator results are estimates based on the numbers entered.
+- Saved data stays in one browser on one device.
+- Waste rules and bin colours vary between cities, so always follow your local municipal guidelines.
+
+---
+
+<div align="center">
+
+**Reduce · Reuse · Recycle** 🌱
+
+</div>
