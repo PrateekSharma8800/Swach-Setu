@@ -77,6 +77,19 @@
   .footer__brand {
     grid-column: 1 / -1;
   }
+
+  /* Filters become one row that scrolls sideways
+     so the sticky toolbar stays short on phones */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-1);
+    scrollbar-width: none;      /* hide scrollbar (Firefox) */
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;              /* hide scrollbar (Chrome, Safari) */
+  }
 }
 
 
@@ -100,6 +113,11 @@
 
   .footer__grid {
     grid-template-columns: 1fr;
+  }
+
+  .note {
+    flex-direction: column;
+    padding: var(--space-5);
   }
 
   .btn {

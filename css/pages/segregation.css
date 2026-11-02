@@ -1,7 +1,8 @@
 /* =========================================================
    WasteWise – Segregation Guide styles (css/pages/segregation.css)
    Only styles specific to segregation.html go here.
-   Shared styles (buttons, cards, navbar, .icon) live in css/style.css.
+   Shared styles (buttons, cards, navbar, .icon, and the search box,
+   filter buttons, badges and .note box) live in css/style.css.
 
    Sections:
    1. Helpers (header buttons, ghost button, screen-reader text)
@@ -22,28 +23,6 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-6);
-}
-
-/* Transparent button with a white border (for the green header) */
-.btn--ghost {
-  background: transparent;
-  color: var(--white);
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--white);
-}
-
-/* Hides text visually but keeps it for screen readers */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 /* Every card/badge on this page sets its own --cat-color
@@ -189,118 +168,6 @@
   box-shadow: var(--shadow-md);
 }
 
-.search {
-  position: relative;
-}
-
-.search__icon {
-  position: absolute;
-  left: var(--space-4);
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--gray-500);
-  pointer-events: none;
-}
-
-.search__input {
-  width: 100%;
-  padding: var(--space-3) var(--space-7) var(--space-3) 2.8rem;
-  border: 2px solid var(--gray-200);
-  border-radius: var(--radius-full);
-  background: var(--gray-100);
-  color: var(--gray-900);
-  transition: var(--transition);
-}
-
-.search__input:focus {
-  outline: none;
-  border-color: var(--green-500);
-  background: var(--white);
-  box-shadow: 0 0 0 4px var(--green-100);
-}
-
-/* Hide the browser's built-in "x" on search inputs (we have our own) */
-.search__input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-.search__clear {
-  position: absolute;
-  right: var(--space-3);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  background: var(--gray-200);
-  color: var(--gray-700);
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.search__clear:hover {
-  background: var(--green-100);
-  color: var(--green-800);
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.filter-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border: 1.5px solid var(--gray-200);
-  border-radius: var(--radius-full);
-  background: var(--white);
-  color: var(--gray-700);
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.filter-btn:hover {
-  border-color: var(--green-500);
-  color: var(--green-700);
-}
-
-.filter-btn.is-active {
-  background: var(--green-700);
-  border-color: var(--green-700);
-  color: var(--white);
-}
-
-/* Small count bubble inside each filter button (added by JS) */
-.filter-btn__count {
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0 6px;
-  border-radius: var(--radius-full);
-  background: var(--gray-100);
-  color: var(--gray-500);
-}
-
-.filter-btn.is-active .filter-btn__count {
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--white);
-}
-
-.results-info {
-  margin: var(--space-5) 0 var(--space-4);
-  font-size: 0.92rem;
-  color: var(--gray-500);
-}
-
-.results-info strong {
-  color: var(--green-800);
-}
 
 
 /* ---------- 4. ITEM CARDS ---------- */
@@ -354,35 +221,6 @@
   line-height: 1.3;
 }
 
-/* Category badge – clicking it filters by that category */
-.badge {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px var(--space-3);
-  border: none;
-  border-radius: var(--radius-full);
-  background: color-mix(in srgb, var(--cat-color) 14%, var(--white));
-  color: color-mix(in srgb, var(--cat-color) 75%, black);
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.badge::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--cat-color);
-}
-
-.badge:hover {
-  background: color-mix(in srgb, var(--cat-color) 24%, var(--white));
-}
-
 .item-card__advice {
   font-size: 0.9rem;
   line-height: 1.55;
@@ -392,13 +230,6 @@
   color: var(--green-900);
 }
 
-/* Highlight for the matching part of a search */
-mark {
-  background: var(--green-100);
-  color: var(--green-900);
-  border-radius: 3px;
-  padding: 0 2px;
-}
 
 
 /* ---------- 5. EMPTY STATE ---------- */
@@ -465,30 +296,6 @@ mark {
   padding-top: var(--space-6);
 }
 
-.note {
-  display: flex;
-  gap: var(--space-4);
-  align-items: flex-start;
-  padding: var(--space-5) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: #fff8e6;              /* soft amber = "please note" */
-  border: 1px solid #f3dca0;
-  border-left: 5px solid var(--plastic);
-}
-
-.note__icon {
-  font-size: 1.6rem;
-  line-height: 1;
-}
-
-.note h3 {
-  font-size: 1.05rem;
-  margin-bottom: var(--space-2);
-}
-
-.note p {
-  font-size: 0.95rem;
-}
 
 
 /* ---------- 8. RESPONSIVE ---------- */
@@ -504,19 +311,6 @@ mark {
     grid-template-columns: 1fr;
   }
 
-  /* Filters become one row that scrolls sideways
-     so the sticky toolbar stays short on phones */
-  .filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: var(--space-1);
-    scrollbar-width: none;      /* hide scrollbar (Firefox) */
-  }
-
-  .filters::-webkit-scrollbar {
-    display: none;              /* hide scrollbar (Chrome, Safari) */
-  }
-
   .toolbar {
     padding: var(--space-3);
     gap: var(--space-3);
@@ -528,8 +322,4 @@ mark {
     grid-template-columns: 1fr;
   }
 
-  .note {
-    flex-direction: column;
-    padding: var(--space-5);
-  }
 }

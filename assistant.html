@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WasteWise – Smart Disposal Assistant. Type any item and get rule-based disposal guidance instantly.">
+  <meta name="description" content="WasteWise – Smart Disposal Assistant. Not sure where your waste belongs? Search for an item and find the right way to dispose of it.">
   <title>Smart Disposal Assistant | WasteWise</title>
 
   <!-- Favicon -->
@@ -49,21 +49,182 @@
     <!-- ===== PAGE HEADER ===== -->
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Ask and dispose right</span>
+        <span class="eyebrow">Rule-based disposal helper</span>
         <h1>Smart Disposal Assistant</h1>
-        <p>Type any item and get rule-based disposal guidance instantly.</p>
+        <p>Not sure where your waste belongs? Search for an item and find the right way to dispose of it.</p>
       </div>
     </section>
 
-    <!-- ===== PAGE CONTENT (built in Phase 7) ===== -->
-    <section class="section">
+
+    <!-- =====================================================
+         1. SEARCH PANEL
+         ===================================================== -->
+    <section class="section section--light assistant-section" id="assistant">
       <div class="container">
-        <article class="card placeholder reveal">
-          <div class="card__icon" style="margin: 0 auto var(--space-4);">💬</div>
-          <h3 class="card__title">Coming in Phase 7</h3>
-          <p class="card__text">This section is under construction.</p>
-          <a href="index.html" class="btn btn--outline mt-4">Back to Home</a>
-        </article>
+        <div class="card assistant-panel">
+          <label for="search-input" class="assistant-panel__label">What do you want to throw away?</label>
+
+          <!-- Search box (styles shared with the Segregation Guide) -->
+          <div class="search search--large">
+            <svg class="icon icon--sm search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" id="search-input" class="search__input"
+                   placeholder="e.g. plastic bottle, battery, old charger, chai patti…"
+                   autocomplete="off" aria-describedby="how-it-works" aria-controls="results">
+            <button type="button" class="search__clear" id="search-clear" aria-label="Clear search" hidden>✕</button>
+          </div>
+
+          <!-- Category filters: data-filter must match a category id -->
+          <div class="filters" role="group" aria-label="Filter by category">
+            <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-btn" data-filter="wet" aria-pressed="false">Wet</button>
+            <button type="button" class="filter-btn" data-filter="dry" aria-pressed="false">Dry</button>
+            <button type="button" class="filter-btn" data-filter="plastic" aria-pressed="false">Plastic</button>
+            <button type="button" class="filter-btn" data-filter="ewaste" aria-pressed="false">E-waste</button>
+            <button type="button" class="filter-btn" data-filter="hazardous" aria-pressed="false">Hazardous</button>
+            <button type="button" class="filter-btn" data-filter="sanitary" aria-pressed="false">Sanitary</button>
+          </div>
+
+          <!-- Popular searches -->
+          <div class="suggestions">
+            <span class="suggestions__label">Popular searches:</span>
+            <div class="suggestions__list" id="suggestions"></div>
+          </div>
+
+          <p class="how-it-works" id="how-it-works">
+            ⚙️ Rule-based assistant: it matches your words against a fixed list of household items. It does not use AI.
+          </p>
+        </div>
+
+        <!-- "Showing 3 results for …" (read out by screen readers) -->
+        <p class="results-info" id="results-info" aria-live="polite"></p>
+
+        <!-- Welcome message: shown before the user searches -->
+        <div class="assistant-state" id="welcome-state">
+          <span class="assistant-state__icon" aria-hidden="true">🔎</span>
+          <h2>Search for any household item</h2>
+          <p>Type the name of an item above, choose a category, or click one of the popular searches to see how to dispose of it.</p>
+        </div>
+
+        <!-- No results message -->
+        <div class="assistant-state" id="no-results" hidden>
+          <span class="assistant-state__icon" aria-hidden="true">🤔</span>
+          <h2>No matching item found</h2>
+          <p id="no-results-text">Try a simpler word (for example "bottle" instead of "water bottle 1 litre"), check the spelling, or choose "All" categories.</p>
+          <p class="assistant-state__hint">Still not sure? Keep the item aside and check with your local municipal waste collector.</p>
+          <button type="button" class="btn btn--outline mt-4" id="reset-btn">Clear search</button>
+        </div>
+
+        <!-- Result cards are added here by assistant.js -->
+        <div class="result-grid" id="results"></div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         2. WHY CORRECT DISPOSAL MATTERS
+         ===================================================== -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">Why it matters</span>
+          <h2>Why Correct Disposal Matters</h2>
+          <p>Putting an item in the right bin decides whether it is recovered, treated safely or ends up polluting the environment.</p>
+        </div>
+
+        <div class="grid why-grid">
+          <article class="card card--hover why-card reveal">
+            <span class="why-card__icon" aria-hidden="true">♻️</span>
+            <h3>Recovers resources</h3>
+            <p>Clean, separated paper, metal, glass and plastic can be recycled into new products instead of being dumped.</p>
+          </article>
+          <article class="card card--hover why-card reveal">
+            <span class="why-card__icon" aria-hidden="true">🌱</span>
+            <h3>Turns food into compost</h3>
+            <p>Wet waste kept separate can be composted, returning nutrients to the soil instead of rotting in landfills.</p>
+          </article>
+          <article class="card card--hover why-card reveal">
+            <span class="why-card__icon" aria-hidden="true">💧</span>
+            <h3>Prevents pollution</h3>
+            <p>Batteries, chemicals and electronics can leak harmful substances into soil and water if thrown in household bins.</p>
+          </article>
+          <article class="card card--hover why-card reveal">
+            <span class="why-card__icon" aria-hidden="true">🧤</span>
+            <h3>Protects waste workers</h3>
+            <p>Wrapped sanitary waste, labelled sharp objects and separated chemicals keep the people who handle our waste safe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         3. FIVE DISPOSAL TIPS
+         ===================================================== -->
+    <section class="section section--light" id="tips">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="eyebrow">Practical tips</span>
+          <h2>5 Waste-Disposal Tips for Every Home</h2>
+        </div>
+
+        <ol class="disposal-tips">
+          <li class="card reveal">
+            <span class="disposal-tips__num">1</span>
+            <div>
+              <h3>When in doubt, keep it separate</h3>
+              <p>If you are unsure about an item, keep it aside instead of mixing it with other waste, and ask your local collector.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <span class="disposal-tips__num">2</span>
+            <div>
+              <h3>Empty, rinse and dry recyclables</h3>
+              <p>Food and liquids make paper, plastic and cans hard to recycle. A quick rinse keeps them clean and odour-free.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <span class="disposal-tips__num">3</span>
+            <div>
+              <h3>Never burn waste</h3>
+              <p>Burning plastic, leaves or wires releases harmful smoke. Hand waste over to collection instead.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <span class="disposal-tips__num">4</span>
+            <div>
+              <h3>Use authorised channels for special waste</h3>
+              <p>Give e-waste, batteries and household chemicals to authorised collection centres or take-back programmes.</p>
+            </div>
+          </li>
+          <li class="card reveal">
+            <span class="disposal-tips__num">5</span>
+            <div>
+              <h3>Wrap and label sanitary and sharp waste</h3>
+              <p>Wrap pads, diapers, blades and broken glass in paper and mark them, so they can be handled safely.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         4. DISCLAIMER
+         ===================================================== -->
+    <section class="section disclaimer-section">
+      <div class="container">
+        <aside class="note reveal" role="note">
+          <span class="note__icon" aria-hidden="true">ℹ️</span>
+          <div>
+            <h3>Please note</h3>
+            <p>
+              The advice on this page is general guidance for Indian households. Waste collection
+              methods, segregation categories and bin colours can vary from one municipality or
+              locality to another. Always follow the official instructions of your local municipal
+              body (Nagar Nigam / Municipal Corporation) or housing society.
+            </p>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
